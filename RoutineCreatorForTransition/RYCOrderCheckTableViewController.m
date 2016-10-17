@@ -85,6 +85,17 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+- (void)alertToEdit
+{
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"提示" message:@"某订单地址有误，请核查修改" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertAction *cancelAction = [UIAlertAction actionWithTitle:@"取消" style:UIAlertActionStyleCancel handler:nil];
+    UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+        [self.navigationController popViewControllerAnimated:YES];
+    }];
+    [alert addAction:cancelAction];
+    [alert addAction:okAction];
+    [self presentViewController:alert animated:YES completion:nil];
+}
 - (void)back
 {
     [self.navigationController popViewControllerAnimated:YES];
@@ -95,6 +106,9 @@
 - (void)refreshResult
 {
     if (self.type == ListType_Result) {
+        if ([RYCDataManager ShareInsurance].finalResultArray.count == 0) {
+            [self alertToEdit];
+        }
         self.dataSource = [RYCDataManager ShareInsurance].finalResultArray;
         [self.tableView reloadData];
     }

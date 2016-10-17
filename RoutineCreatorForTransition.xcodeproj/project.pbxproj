@@ -43,6 +43,7 @@
 		94DD17781DACEA44003EE23D /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DD17771DACEA44003EE23D /* SystemConfiguration.framework */; };
 		94DD177A1DACEA4B003EE23D /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DD17791DACEA4B003EE23D /* CoreTelephony.framework */; };
 		94DD177C1DACEA50003EE23D /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 94DD177B1DACEA50003EE23D /* CoreLocation.framework */; };
+		94E417D31DB4C32300FEC269 /* truck.png in Resources */ = {isa = PBXBuildFile; fileRef = 94E417D21DB4C32300FEC269 /* truck.png */; };
 		94E59DFE1DAB28A6005EC5E8 /* RYCOrderCheckTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E59DFD1DAB28A6005EC5E8 /* RYCOrderCheckTableViewController.m */; };
 		94E59E051DAB292B005EC5E8 /* RYCOrderListTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E59E041DAB292B005EC5E8 /* RYCOrderListTableViewCell.m */; };
 		94E59E081DAB33BD005EC5E8 /* RYCRoundCornerButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 94E59E071DAB33BD005EC5E8 /* RYCRoundCornerButton.m */; };
@@ -126,6 +127,7 @@
 		94DD17771DACEA44003EE23D /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		94DD17791DACEA4B003EE23D /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
 		94DD177B1DACEA50003EE23D /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
+		94E417D21DB4C32300FEC269 /* truck.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = truck.png; sourceTree = "<group>"; };
 		94E59DFC1DAB28A6005EC5E8 /* RYCOrderCheckTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYCOrderCheckTableViewController.h; sourceTree = "<group>"; };
 		94E59DFD1DAB28A6005EC5E8 /* RYCOrderCheckTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYCOrderCheckTableViewController.m; sourceTree = "<group>"; };
 		94E59E031DAB292B005EC5E8 /* RYCOrderListTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYCOrderListTableViewCell.h; sourceTree = "<group>"; };
@@ -376,6 +378,7 @@
 			isa = PBXGroup;
 			children = (
 				94D0109A1DAA149D00CA48E8 /* order.gif */,
+				94E417D21DB4C32300FEC269 /* truck.png */,
 			);
 			name = Resource;
 			sourceTree = "<group>";
@@ -499,6 +502,7 @@
 				94433CC31DA88895001531F0 /* Assets.xcassets in Resources */,
 				94D010991DA9F3DE00CA48E8 /* IQKeyboardManager.bundle in Resources */,
 				94433CC11DA88895001531F0 /* Main.storyboard in Resources */,
+				94E417D31DB4C32300FEC269 /* truck.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
