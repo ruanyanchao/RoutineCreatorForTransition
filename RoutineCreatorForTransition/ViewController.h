@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+ #import "AFNetworking.h"
 #import "RYCTransitoinOrderModel.h"
 
 typedef NS_ENUM(NSUInteger,OperationModel){

@@ -10,8 +10,10 @@
 #import "RYCOrderCheckTableViewController.h"
 #import "RYCDataManager.h"
 #import "RYCRoundCornerButton.h"
+#import "RYCAddressModel.h"
 
-@interface ViewController ()<UIGestureRecognizerDelegate>
+
+@interface ViewController ()<UIGestureRecognizerDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
 @property (weak, nonatomic) IBOutlet UIButton*completeButton;
 @property (weak, nonatomic) IBOutlet UIButton *openButton;
 @property (weak, nonatomic) IBOutlet RYCRoundCornerButton *addButton;
@@ -22,6 +24,11 @@
 @property (weak, nonatomic) IBOutlet UITextField *phoneTF;
 @property (weak, nonatomic) IBOutlet UITextField *nameTF;
 @property (weak, nonatomic) IBOutlet UIButton *helpButton;
+
+@property (nonatomic, strong) NSMutableArray *dataSourceArray;
+@property (nonatomic, strong) UITableView    *tableView;
+
+@property (nonatomic, strong) RYCAddressModel   *selectedAddressModel;
 
 @end
 
@@ -35,12 +42,64 @@
     }
     return _dataModel;
 }
+- (IBAction)respondsToCityChange:(UIBarButtonItem *)sender {
+    
+}
 
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.title = @"添加待送配单";
     [self setUI];
+    [self createSearchHintTable];
     // Do any additional setup after loading the view, typically from a nib.
+}
+
+-(void)viewDidLayoutSubviews
+{
+    self.tableView.frame = CGRectMake(75, 114.5 + 94,285, self.view.frame.size.height - 114.5 - 30);
+    
+}
+
+-(NSMutableArray *)dataSourceArray
+{
+    if (!_dataSourceArray) {
+        _dataSourceArray = [NSMutableArray new];
+    }
+    return _dataSourceArray;
+}
+//创建搜索结果显示表单
+- (void)createSearchHintTable
+{
+    UITableView *searchTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.addressTF.frame.origin.x, self.addressTF.bounds.origin.y + self.addressTF.bounds.size.height,self.addressTF.frame.size.width , self.view.frame.size.height - self.addressTF.frame.origin.y - self.addressTF.frame.size.height) style:UITableViewStylePlain];
+    searchTableView.delegate = self;
+    searchTableView.dataSource = self;
+    searchTableView.backgroundColor = [UIColor clearColor];
+    [self.view addSubview:searchTableView];
+    searchTableView.alpha = 0;
+    self.tableView = searchTableView;
+    
+    
+}
+
+-(NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    return self.dataSourceArray.count;
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView{
+    return 1;
+}
+
+-(UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    static NSString *identifier = @"searchCell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:identifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault reuseIdentifier:identifier];
+    }
+    RYCAddressModel *model = self.dataSourceArray[indexPath.row];
+    cell.textLabel.text = model.name;
+    return cell;
 }
 
 //调整UI
@@ -150,13 +209,14 @@
     self.dataModel.name = self.nameTF.text;
     self.dataModel.tel = self.phoneTF.text;
     self.dataModel.orderNO = self.orderNOTF.text;
-    
+    self.dataModel.location = self.selectedAddressModel.location;
     if (self.currentModel == OperationModel_Edit) {
         return;
     }
     [[RYCDataManager ShareInsurance].dataContainer addObject:self.dataModel];
     [self clearTFs];
 }
+
 
 - (void)clearTFs{
     self.addressTF.text = @"";
@@ -165,6 +225,36 @@
     self.orderNOTF.text = @"";
 }
 
+#pragma mark  -- TextFieldDelegate
+-(BOOL)textField:(UITextField *)textField shouldChangeCharactersInRange:(NSRange)range replacementString:(NSString *)string
+{
+    NSString *baseUrl = @"http://restapi.amap.com/v3/assistant/inputtips";
+    NSDictionary *parameters = @{@"keywords":[textField.text stringByReplacingCharactersInRange:range withString:string],@"city":@"上海",@"types":@"050301",@"key":@"b93a104a2acef205847e0ac8c339d39c"};
+    [[AFHTTPSessionManager manager] GET:baseUrl parameters:parameters progress:^(NSProgress * _Nonnull downloadProgress) {
+        
+    } success:^(NSURLSessionDataTask * _Nonnull task, id  _Nullable responseObject) {
+        NSLog(@"success");
+        NSArray *tips = [responseObject objectForKey:@"tips"];
+        NSArray *arr = [RYCAddressModel deserializeWithArr:tips];
+        [self.dataSourceArray removeAllObjects];
+        [self.dataSourceArray addObjectsFromArray:arr];
+        [self.tableView reloadData];
+        self.tableView.alpha = 1;
+    } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
+        NSLog(@"failed");
+    }];
+    return YES;
+}
+
+
+-(void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    RYCAddressModel *model = self.dataSourceArray[indexPath.row];
+    self.selectedAddressModel = model;
+    self.addressTF.text = model.name;
+    [self.addressTF resignFirstResponder];
+    self.tableView.alpha = 0;
+}
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.

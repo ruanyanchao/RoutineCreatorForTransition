@@ -71,6 +71,9 @@
                                                 <nil key="textColor"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
+                                                <connections>
+                                                    <outlet property="delegate" destination="IuP-gJ-Uu9" id="sSR-jI-zpw"/>
+                                                </connections>
                                             </textField>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PKK-sJ-uw1">
                                                 <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
@@ -255,6 +258,7 @@
                                             <constraint firstItem="zJi-cg-ATR" firstAttribute="top" secondItem="IMh-8T-6qJ" secondAttribute="top" id="KCx-ru-UXI"/>
                                             <constraint firstItem="pv0-WA-gFz" firstAttribute="leading" secondItem="IMh-8T-6qJ" secondAttribute="leading" constant="15" id="Na3-e7-kX6"/>
                                             <constraint firstItem="zJi-cg-ATR" firstAttribute="centerX" secondItem="IMh-8T-6qJ" secondAttribute="centerX" id="Plw-Wf-Rfp"/>
+                                            <constraint firstItem="guZ-8B-gBl" firstAttribute="centerX" secondItem="IMh-8T-6qJ" secondAttribute="centerX" id="QBY-lO-NaZ"/>
                                             <constraint firstItem="xJe-Nq-Vxh" firstAttribute="leading" secondItem="IMh-8T-6qJ" secondAttribute="leading" constant="15" id="QhN-jn-TKV"/>
                                             <constraint firstItem="PKK-sJ-uw1" firstAttribute="leading" secondItem="IMh-8T-6qJ" secondAttribute="leading" id="Qz3-3M-odv"/>
                                             <constraint firstAttribute="trailing" secondItem="Rkh-Se-STs" secondAttribute="trailing" constant="15" id="T7c-Y2-XWS"/>
@@ -268,7 +272,6 @@
                                             <constraint firstItem="KPf-8M-CCg" firstAttribute="leading" secondItem="IMh-8T-6qJ" secondAttribute="leading" constant="15" id="pXh-kS-kkG"/>
                                             <constraint firstAttribute="trailing" secondItem="Q6e-3H-4YU" secondAttribute="trailing" constant="15" id="paB-OR-RWR"/>
                                             <constraint firstItem="1bY-Yq-JCI" firstAttribute="centerY" secondItem="KPf-8M-CCg" secondAttribute="centerY" id="poL-1c-4O1"/>
-                                            <constraint firstItem="guZ-8B-gBl" firstAttribute="leading" secondItem="IMh-8T-6qJ" secondAttribute="leading" constant="155" id="u50-0w-efH"/>
                                             <constraint firstItem="Nal-Rt-QCc" firstAttribute="leading" secondItem="IMh-8T-6qJ" secondAttribute="leading" constant="15" id="ylJ-Az-Q4f"/>
                                             <constraint firstItem="Rkh-Se-STs" firstAttribute="top" secondItem="PKK-sJ-uw1" secondAttribute="bottom" constant="18" id="zy3-6q-IqZ"/>
                                         </constraints>
@@ -293,7 +296,18 @@
                         </constraints>
                     </view>
                     <extendedEdge key="edgesForExtendedLayout" top="YES"/>
-                    <navigationItem key="navigationItem" id="KqW-U9-NUY"/>
+                    <navigationItem key="navigationItem" id="KqW-U9-NUY">
+                        <barButtonItem key="leftBarButtonItem" title="上海⌵" style="plain" id="JvT-W5-yWf">
+                            <button key="customView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" id="t47-go-yPJ">
+                                <rect key="frame" x="16" y="7" width="83" height="30"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="上海⌵"/>
+                            </button>
+                            <connections>
+                                <action selector="respondsToCityChange:" destination="IuP-gJ-Uu9" id="7vl-A3-cOQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="addButton" destination="guZ-8B-gBl" id="ptM-Ix-BFO"/>
                         <outlet property="addressTF" destination="1bY-Yq-JCI" id="ZFf-IA-VhO"/>
@@ -308,7 +322,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tQv-Wa-qPk" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="829.60000000000002" y="93.103448275862078"/>
+            <point key="canvasLocation" x="793" y="83"/>
         </scene>
         <!--配单查看-->
         <scene sceneID="A7q-mT-Hms">

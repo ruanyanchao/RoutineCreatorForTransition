@@ -122,16 +122,20 @@ static RYCDataManager *manager = nil;
 
 -(void)startTransferAddressToLocation
 {
+    /*
     for (RYCTransitoinOrderModel *obj in self.dataContainer) {
         AMapGeocodeSearchRequest *geo = [[AMapGeocodeSearchRequest alloc] init];
         geo.address = obj.address;
         [self.search AMapGeocodeSearch:geo];
     }
+     */
+    [self caculateOrderListWith:self.dataContainer];
 }
 
 -(NSArray *)caculateOrderListWith:(NSArray *)arr
 {
     CLLocationCoordinate2D nearByPoint = self.initiateCoordinate;
+    self.locationToolArray = [arr mutableCopy];
     for (RYCTransitoinOrderModel *obj in arr) {
         if ([self.locationToolArray count] == 0) {
             break;

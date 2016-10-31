@@ -23,7 +23,6 @@
 - (void)viewDidLoad {
     [super viewDidLoad];
     [self setUI];
-    [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshResult) name:@"finalRefresh" object:nil];
 }
 
 - (void)setUI
@@ -41,13 +40,14 @@
         
     }else{
         self.title = @"规划结果";
-        
+        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(refreshResult) name:@"finalRefresh" object:nil];
+        [[RYCDataManager ShareInsurance] startTransferAddressToLocation];
         UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
         self.navigationItem.leftBarButtonItem = leftButton;
         
         UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"完成全部送单" style:UIBarButtonItemStylePlain target:self action:@selector(finishTask)];
         self.navigationItem.rightBarButtonItem = rightButton;
-        
+       
         
     }
     
@@ -63,7 +63,6 @@
 {
     RYCOrderCheckTableViewController *result = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"orderList"];
     result.type = ListType_Result;
-    [[RYCDataManager ShareInsurance] startTransferAddressToLocation];
     [self.navigationController pushViewController:result animated:YES];
 }
 
