@@ -17,9 +17,11 @@
     RYCAddressModel *model = [RYCAddressModel new];
     model.name = [dic objectForKey:@"name"];
     NSString *locationString = [dic objectForKey:@"location"];
+    model.address_id = [dic objectForKey:@"id"];
     if ([locationString isKindOfClass:[NSString class]]) {
         NSArray *arr = [locationString componentsSeparatedByString:@","];
-        model.location = CLLocationCoordinate2DMake([arr.firstObject floatValue],[arr.lastObject floatValue]);
+        model.location = CLLocationCoordinate2DMake([arr.lastObject floatValue],[arr.firstObject floatValue]);
+        NSLog(@"%f,%f",[arr.lastObject floatValue],[arr.firstObject floatValue]);
     }
     
     return model;

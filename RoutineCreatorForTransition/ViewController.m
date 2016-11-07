@@ -209,6 +209,7 @@
     self.dataModel.name = self.nameTF.text;
     self.dataModel.tel = self.phoneTF.text;
     self.dataModel.orderNO = self.orderNOTF.text;
+    self.dataModel.address_id = self.selectedAddressModel.address_id;
     self.dataModel.location = self.selectedAddressModel.location;
     if (self.currentModel == OperationModel_Edit) {
         return;

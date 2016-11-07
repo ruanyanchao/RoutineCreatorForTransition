@@ -16,6 +16,7 @@
 @property (nonatomic, strong) NSString *name;
 @property (nonatomic, strong) NSString *tel;
 @property (nonatomic, assign) CLLocationCoordinate2D location;
+@property (nonatomic, strong) NSString *address_id;
 
 @property (nonatomic, assign) BOOL     isResult;
 
