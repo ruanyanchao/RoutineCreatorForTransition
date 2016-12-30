@@ -10,12 +10,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoutineCreatorForTransition/RYCDataManager.m"
-            timestampString = "500193315.550462"
+            timestampString = "504782393.777751"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "138"
-            endingLineNumber = "138"
-            landmarkName = "-caculateOrderListWith:"
+            startingLineNumber = "183"
+            endingLineNumber = "183"
+            landmarkName = "-startGuideWithDesModel:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -26,12 +26,12 @@
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "RoutineCreatorForTransition/ViewController.m"
-            timestampString = "500197288.078638"
+            timestampString = "504782801.35853"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "240"
-            endingLineNumber = "240"
-            landmarkName = "-textField:shouldChangeCharactersInRange:replacementString:"
+            startingLineNumber = "264"
+            endingLineNumber = "264"
+            landmarkName = "-tableView:didSelectRowAtIndexPath:"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

@@ -54,9 +54,15 @@
     // Do any additional setup after loading the view, typically from a nib.
 }
 
+
+- (IBAction)retrieveKeyboard:(UIButton *)sender {
+    [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
+}
+
+
 -(void)viewDidLayoutSubviews
 {
-    self.tableView.frame = CGRectMake(75, 114.5 + 94,285, self.view.frame.size.height - 114.5 - 30);
+    self.tableView.frame = CGRectMake(75,114,285, self.view.frame.size.height - 114.5 - 30);
     
 }
 
@@ -73,6 +79,7 @@
     UITableView *searchTableView = [[UITableView alloc] initWithFrame:CGRectMake(self.addressTF.frame.origin.x, self.addressTF.bounds.origin.y + self.addressTF.bounds.size.height,self.addressTF.frame.size.width , self.view.frame.size.height - self.addressTF.frame.origin.y - self.addressTF.frame.size.height) style:UITableViewStylePlain];
     searchTableView.delegate = self;
     searchTableView.dataSource = self;
+    searchTableView.backgroundColor = [UIColor lightGrayColor];
     searchTableView.backgroundColor = [UIColor clearColor];
     [self.view addSubview:searchTableView];
     searchTableView.alpha = 0;
@@ -238,7 +245,11 @@
         NSArray *tips = [responseObject objectForKey:@"tips"];
         NSArray *arr = [RYCAddressModel deserializeWithArr:tips];
         [self.dataSourceArray removeAllObjects];
-        [self.dataSourceArray addObjectsFromArray:arr];
+        for (RYCAddressModel *obj in arr) {
+            if (obj.location.latitude > 0) {
+                [self.dataSourceArray addObject:obj];
+            }
+        }
         [self.tableView reloadData];
         self.tableView.alpha = 1;
     } failure:^(NSURLSessionDataTask * _Nullable task, NSError * _Nonnull error) {
