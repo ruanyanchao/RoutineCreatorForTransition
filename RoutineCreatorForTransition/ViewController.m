@@ -29,6 +29,7 @@
 @property (nonatomic, strong) UITableView    *tableView;
 
 @property (nonatomic, strong) RYCAddressModel   *selectedAddressModel;
+@property (weak, nonatomic) IBOutlet UIButton *retrieveButton;
 
 @end
 
@@ -48,7 +49,7 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"添加待送配单";
+    self.title = @"添加配单";
     [self setUI];
     [self createSearchHintTable];
     // Do any additional setup after loading the view, typically from a nib.
@@ -122,12 +123,13 @@
     .CGColor;
     self.helpButton.layer.borderWidth = 2;
     
-    [self.openButton setTitle:@"展开" forState:UIControlStateNormal];
+    [self.openButton setTitle:@"展开⇣" forState:UIControlStateNormal];
     self.selectedFillingPartViewHeightConstraint.constant = 0;
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIButton buttonWithType:UIButtonTypeCustom]];
     
     UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"完成输入" style:UIBarButtonItemStylePlain target:self action:@selector(respondsToComplete:)];
+    [rightButton setTintColor:[UIColor redColor]];
     self.navigationItem.rightBarButtonItem = rightButton;
     
     if (self.currentModel == OperationModel_Edit) {
@@ -196,10 +198,10 @@
 - (IBAction)respondsToOpenButton:(UIButton *)sender {
     sender.selected = !sender.selected;
     if (sender.selected) {
-        [self.openButton setTitle:@"收起" forState:UIControlStateNormal];
+        [self.openButton setTitle:@"收起⇡" forState:UIControlStateNormal];
         self.selectedFillingPartViewHeightConstraint.constant = 153;
     }else{
-        [self.openButton setTitle:@"展开" forState:UIControlStateNormal];
+        [self.openButton setTitle:@"展开⇣" forState:UIControlStateNormal];
         self.selectedFillingPartViewHeightConstraint.constant = 0;
     }
 }
