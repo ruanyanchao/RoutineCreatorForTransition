@@ -45,7 +45,7 @@
         UIBarButtonItem *leftButton = [[UIBarButtonItem alloc] initWithTitle:@"返回" style:UIBarButtonItemStylePlain target:self action:@selector(back)];
         self.navigationItem.leftBarButtonItem = leftButton;
         
-        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"完成全部送单" style:UIBarButtonItemStylePlain target:self action:@selector(finishTask)];
+        UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"回家" style:UIBarButtonItemStylePlain target:self action:@selector(finishTask)];
         self.navigationItem.rightBarButtonItem = rightButton;
        
         

@@ -8,6 +8,14 @@
 
 /* Begin PBXBuildFile section */
 		4492783CA0863B97EC877476 /* libPods-RoutineCreatorForTransition.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CB8F9432D74CA97EAF0E1FC /* libPods-RoutineCreatorForTransition.a */; };
+		940615FA1E236376005F5769 /* CDSideBarController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940615EC1E236376005F5769 /* CDSideBarController.m */; };
+		940616091E236484005F5769 /* menuChat.png in Resources */ = {isa = PBXBuildFile; fileRef = 940616041E236484005F5769 /* menuChat.png */; };
+		9406160A1E236484005F5769 /* menuClose.png in Resources */ = {isa = PBXBuildFile; fileRef = 940616051E236484005F5769 /* menuClose.png */; };
+		9406160B1E236484005F5769 /* menuIcon.png in Resources */ = {isa = PBXBuildFile; fileRef = 940616061E236484005F5769 /* menuIcon.png */; };
+		9406160C1E236484005F5769 /* menuMap.png in Resources */ = {isa = PBXBuildFile; fileRef = 940616071E236484005F5769 /* menuMap.png */; };
+		9406160D1E236484005F5769 /* menuUsers.png in Resources */ = {isa = PBXBuildFile; fileRef = 940616081E236484005F5769 /* menuUsers.png */; };
+		940616131E236DF7005F5769 /* RYCOrderHistoryTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940616121E236DF7005F5769 /* RYCOrderHistoryTableViewController.m */; };
+		940616161E236F11005F5769 /* RYCUserCenterTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 940616151E236F11005F5769 /* RYCUserCenterTableViewController.m */; };
 		94433CB81DA88895001531F0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 94433CB71DA88895001531F0 /* main.m */; };
 		94433CBB1DA88895001531F0 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 94433CBA1DA88895001531F0 /* AppDelegate.m */; };
 		94433CBE1DA88895001531F0 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 94433CBD1DA88895001531F0 /* ViewController.m */; };
@@ -72,6 +80,17 @@
 		2CB8F9432D74CA97EAF0E1FC /* libPods-RoutineCreatorForTransition.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-RoutineCreatorForTransition.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 		3A137C61B2B8136C2478335C /* Pods-RoutineCreatorForTransition.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoutineCreatorForTransition.debug.xcconfig"; path = "Pods/Target Support Files/Pods-RoutineCreatorForTransition/Pods-RoutineCreatorForTransition.debug.xcconfig"; sourceTree = "<group>"; };
 		8C6C286AB6872D111282D96D /* Pods-RoutineCreatorForTransition.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-RoutineCreatorForTransition.release.xcconfig"; path = "Pods/Target Support Files/Pods-RoutineCreatorForTransition/Pods-RoutineCreatorForTransition.release.xcconfig"; sourceTree = "<group>"; };
+		940615EB1E236376005F5769 /* CDSideBarController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CDSideBarController.h; sourceTree = "<group>"; };
+		940615EC1E236376005F5769 /* CDSideBarController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CDSideBarController.m; sourceTree = "<group>"; };
+		940616041E236484005F5769 /* menuChat.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuChat.png; sourceTree = "<group>"; };
+		940616051E236484005F5769 /* menuClose.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuClose.png; sourceTree = "<group>"; };
+		940616061E236484005F5769 /* menuIcon.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuIcon.png; sourceTree = "<group>"; };
+		940616071E236484005F5769 /* menuMap.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuMap.png; sourceTree = "<group>"; };
+		940616081E236484005F5769 /* menuUsers.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = menuUsers.png; sourceTree = "<group>"; };
+		940616111E236DF7005F5769 /* RYCOrderHistoryTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYCOrderHistoryTableViewController.h; sourceTree = "<group>"; };
+		940616121E236DF7005F5769 /* RYCOrderHistoryTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYCOrderHistoryTableViewController.m; sourceTree = "<group>"; };
+		940616141E236F11005F5769 /* RYCUserCenterTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RYCUserCenterTableViewController.h; sourceTree = "<group>"; };
+		940616151E236F11005F5769 /* RYCUserCenterTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RYCUserCenterTableViewController.m; sourceTree = "<group>"; };
 		94433CB31DA88895001531F0 /* RoutineCreatorForTransition.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RoutineCreatorForTransition.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		94433CB71DA88895001531F0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		94433CB91DA88895001531F0 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -182,6 +201,23 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		940615E51E236376005F5769 /* CDSideBar */ = {
+			isa = PBXGroup;
+			children = (
+				940615EA1E236376005F5769 /* CDSideBarController */,
+			);
+			path = CDSideBar;
+			sourceTree = "<group>";
+		};
+		940615EA1E236376005F5769 /* CDSideBarController */ = {
+			isa = PBXGroup;
+			children = (
+				940615EB1E236376005F5769 /* CDSideBarController.h */,
+				940615EC1E236376005F5769 /* CDSideBarController.m */,
+			);
+			path = CDSideBarController;
+			sourceTree = "<group>";
+		};
 		94433CAA1DA88895001531F0 = {
 			isa = PBXGroup;
 			children = (
@@ -207,6 +243,7 @@
 		94433CB51DA88895001531F0 /* RoutineCreatorForTransition */ = {
 			isa = PBXGroup;
 			children = (
+				940615E51E236376005F5769 /* CDSideBar */,
 				94E59E021DAB28E5005EC5E8 /* Resource */,
 				94E59E011DAB28BB005EC5E8 /* M */,
 				94E59E001DAB28B7005EC5E8 /* V */,
@@ -358,6 +395,10 @@
 				94E59DFD1DAB28A6005EC5E8 /* RYCOrderCheckTableViewController.m */,
 				94433CBC1DA88895001531F0 /* ViewController.h */,
 				94433CBD1DA88895001531F0 /* ViewController.m */,
+				940616141E236F11005F5769 /* RYCUserCenterTableViewController.h */,
+				940616151E236F11005F5769 /* RYCUserCenterTableViewController.m */,
+				940616111E236DF7005F5769 /* RYCOrderHistoryTableViewController.h */,
+				940616121E236DF7005F5769 /* RYCOrderHistoryTableViewController.m */,
 			);
 			name = C;
 			sourceTree = "<group>";
@@ -389,6 +430,11 @@
 		94E59E021DAB28E5005EC5E8 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				940616041E236484005F5769 /* menuChat.png */,
+				940616051E236484005F5769 /* menuClose.png */,
+				940616061E236484005F5769 /* menuIcon.png */,
+				940616071E236484005F5769 /* menuMap.png */,
+				940616081E236484005F5769 /* menuUsers.png */,
 				94D0109A1DAA149D00CA48E8 /* order.gif */,
 				94E417D21DB4C32300FEC269 /* truck.png */,
 			);
@@ -521,12 +567,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9406160D1E236484005F5769 /* menuUsers.png in Resources */,
 				94D0109B1DAA149D00CA48E8 /* order.gif in Resources */,
 				94433CC61DA88895001531F0 /* LaunchScreen.storyboard in Resources */,
 				94433CC31DA88895001531F0 /* Assets.xcassets in Resources */,
+				9406160A1E236484005F5769 /* menuClose.png in Resources */,
+				9406160B1E236484005F5769 /* menuIcon.png in Resources */,
 				94D010991DA9F3DE00CA48E8 /* IQKeyboardManager.bundle in Resources */,
 				94433CC11DA88895001531F0 /* Main.storyboard in Resources */,
 				94E417D31DB4C32300FEC269 /* truck.png in Resources */,
+				940616091E236484005F5769 /* menuChat.png in Resources */,
+				9406160C1E236484005F5769 /* menuMap.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -600,8 +651,10 @@
 				94D010961DA9F3DE00CA48E8 /* IQTitleBarButtonItem.m in Sources */,
 				94E59DFE1DAB28A6005EC5E8 /* RYCOrderCheckTableViewController.m in Sources */,
 				94D010941DA9F3DE00CA48E8 /* IQTextView.m in Sources */,
+				940616131E236DF7005F5769 /* RYCOrderHistoryTableViewController.m in Sources */,
 				94D010981DA9F3DE00CA48E8 /* IQUIView+IQKeyboardToolbar.m in Sources */,
 				94D0108E1DA9F3DE00CA48E8 /* IQNSArray+Sort.m in Sources */,
+				940616161E236F11005F5769 /* RYCUserCenterTableViewController.m in Sources */,
 				94D0106C1DA9EFEE00CA48E8 /* RYCTransitoinOrderModel.m in Sources */,
 				94D010971DA9F3DE00CA48E8 /* IQToolbar.m in Sources */,
 				94E59E081DAB33BD005EC5E8 /* RYCRoundCornerButton.m in Sources */,
@@ -616,6 +669,7 @@
 				94433CB81DA88895001531F0 /* main.m in Sources */,
 				94D0108F1DA9F3DE00CA48E8 /* IQUIView+Hierarchy.m in Sources */,
 				94D010931DA9F3DE00CA48E8 /* IQSegmentedNextPrevious.m in Sources */,
+				940615FA1E236376005F5769 /* CDSideBarController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

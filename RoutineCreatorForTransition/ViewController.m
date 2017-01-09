@@ -11,9 +11,10 @@
 #import "RYCDataManager.h"
 #import "RYCRoundCornerButton.h"
 #import "RYCAddressModel.h"
+#import "CDSideBarController.h"
 
 
-@interface ViewController ()<UIGestureRecognizerDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource>
+@interface ViewController ()<UIGestureRecognizerDelegate,UITextFieldDelegate,UITableViewDelegate,UITableViewDataSource,CDSideBarControllerDelegate>
 @property (weak, nonatomic) IBOutlet UIButton*completeButton;
 @property (weak, nonatomic) IBOutlet UIButton *openButton;
 @property (weak, nonatomic) IBOutlet RYCRoundCornerButton *addButton;
@@ -30,12 +31,20 @@
 
 @property (nonatomic, strong) RYCAddressModel   *selectedAddressModel;
 @property (weak, nonatomic) IBOutlet UIButton *retrieveButton;
+@property (weak, nonatomic) IBOutlet UILabel *insertedNumLabel;
+
+@property (nonatomic, strong) CDSideBarController *slideBar;
 
 @end
 
 @implementation ViewController
 
-
+- (void)viewDidAppear:(BOOL)animated
+{
+    [super viewDidAppear:animated];
+    
+    [self.slideBar insertMenuButtonOnView:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(self.view.frame.size.width - 40, 70)];
+}
 -(RYCTransitoinOrderModel *)dataModel
 {
     if (!_dataModel) {
@@ -49,7 +58,12 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.title = @"添加配单";
+    if (self.currentModel == OperationModel_Edit) {
+        self.title = @"编辑配单";
+    }else{
+        self.title = @"添加配单";
+    }
+    
     [self setUI];
     [self createSearchHintTable];
     // Do any additional setup after loading the view, typically from a nib.
@@ -63,7 +77,7 @@
 
 -(void)viewDidLayoutSubviews
 {
-    self.tableView.frame = CGRectMake(75,114,285, self.view.frame.size.height - 114.5 - 30);
+    self.tableView.frame = CGRectMake(75,155,285, self.view.frame.size.height - 155 - 30);
     
 }
 
@@ -119,9 +133,9 @@
     self.openButton.layer.borderWidth = 2;
     
     self.helpButton.layer.cornerRadius = 15;
-    self.helpButton.layer.borderColor = [UIColor whiteColor]
+    self.helpButton.layer.borderColor = [UIColor blackColor]
     .CGColor;
-    self.helpButton.layer.borderWidth = 2;
+    self.helpButton.layer.borderWidth = 1;
     
     [self.openButton setTitle:@"展开⇣" forState:UIControlStateNormal];
     self.selectedFillingPartViewHeightConstraint.constant = 0;
@@ -141,6 +155,12 @@
         self.completeButton.alpha = 0;
         self.addButton.alpha = 0;
     }
+    
+    //侧边栏
+    NSArray *imageList = @[ [UIImage imageNamed:@"menuUsers.png"], [UIImage imageNamed:@"menuMap.png"],[UIImage imageNamed:@"menuClose.png"]];
+    self.slideBar = [[CDSideBarController alloc] initWithImages:imageList];
+    self.slideBar.delegate = self;
+    
 }
 
 - (void)restoreData
@@ -166,7 +186,9 @@
         [self saveCurrentOrder];
     }
     if ([RYCDataManager ShareInsurance].dataContainer.count > 0) {
+        self.insertedNumLabel.text = @"0";
         RYCOrderCheckTableViewController *listVC = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"orderList"];
+        listVC.type = ListType_Check;
         [self.navigationController pushViewController:listVC animated:YES];
     }
     else{
@@ -176,8 +198,6 @@
 - (IBAction)respondsToAdd:(UIButton *)sender {
     if ([self.addressTF.text length] > 0) {
         [self saveCurrentOrder];
-        ViewController *inputVC = [self.navigationController.storyboard instantiateViewControllerWithIdentifier:@"inputVC"];
-        [self.navigationController pushViewController:inputVC animated:YES];
     }else{
         [self alertToNilAddress];
     }
@@ -206,7 +226,7 @@
     }
 }
 - (IBAction)respondsToHelpButton:(id)sender {
-    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"友情提醒" message:@"选填的内容可以使接下来的服务更加的细致和周到，\n如果不是特别紧急，建议填写" preferredStyle:UIAlertControllerStyleAlert];
+    UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"友情提醒" message:@"包括客户的单号，手机和姓名，可以帮助您在配送过程中直接拨打电话，查看单号，可不填" preferredStyle:UIAlertControllerStyleAlert];
     UIAlertAction *okAction = [UIAlertAction actionWithTitle:@"好的" style:UIAlertActionStyleDefault handler:nil];
     [alert addAction:okAction];
     [self presentViewController:alert animated:YES completion:nil];
@@ -214,16 +234,25 @@
 
 - (void)saveCurrentOrder
 {
-    self.dataModel.address = self.addressTF.text;
-    self.dataModel.name = self.nameTF.text;
-    self.dataModel.tel = self.phoneTF.text;
-    self.dataModel.orderNO = self.orderNOTF.text;
-    self.dataModel.address_id = self.selectedAddressModel.address_id;
-    self.dataModel.location = self.selectedAddressModel.location;
     if (self.currentModel == OperationModel_Edit) {
+        self.dataModel.address = self.addressTF.text;
+        self.dataModel.name = self.nameTF.text;
+        self.dataModel.tel = self.phoneTF.text;
+        self.dataModel.orderNO = self.orderNOTF.text;
+        self.dataModel.address_id = self.selectedAddressModel.address_id;
+        self.dataModel.location = self.selectedAddressModel.location;
         return;
     }
-    [[RYCDataManager ShareInsurance].dataContainer addObject:self.dataModel];
+    RYCTransitoinOrderModel *dataModel = [RYCTransitoinOrderModel new];
+    dataModel.address = self.addressTF.text;
+    dataModel.name = self.nameTF.text;
+    dataModel.tel = self.phoneTF.text;
+    dataModel.orderNO = self.orderNOTF.text;
+    dataModel.address_id = self.selectedAddressModel.address_id;
+    dataModel.location = self.selectedAddressModel.location;
+    
+    [[RYCDataManager ShareInsurance].dataContainer addObject:dataModel];
+    self.insertedNumLabel.text = [NSString stringWithFormat:@"%d",[RYCDataManager ShareInsurance].dataContainer.count];
     [self clearTFs];
 }
 
@@ -272,6 +301,27 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+
+#pragma mark - CDSideBarController delegate
+
+- (void)menuButtonClicked:(int)index
+{
+    switch (index) {
+        case 0:
+        {
+            NSLog(@"个人中心");
+        }
+            break;
+        case 1:
+        {
+            NSLog(@"我的成果");
+        }
+            break;
+        default:
+            break;
+    }
 }
 
 

@@ -45,7 +45,7 @@
     }
 }
 - (IBAction)respondsToEdit:(UIButton *)sender {
-    if (self.model.isResult) {
+    if ([self.editButton.titleLabel.text isEqualToString:@"导航"]) {
         if ([self.delegate respondsToSelector:@selector(toGuideWithModel:)]) {
             [self.delegate toGuideWithModel:self.model];
         }
