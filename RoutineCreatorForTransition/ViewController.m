@@ -35,6 +35,7 @@
 
 @property (nonatomic, strong) CDSideBarController *slideBar;
 
+
 @end
 
 @implementation ViewController
@@ -42,8 +43,17 @@
 - (void)viewDidAppear:(BOOL)animated
 {
     [super viewDidAppear:animated];
-    
-    [self.slideBar insertMenuButtonOnView:[UIApplication sharedApplication].delegate.window atPosition:CGPointMake(self.view.frame.size.width - 40, 70)];
+    if (self.currentModel == OperationModel_Edit) {
+        self.title = @"编辑配单";
+    }else{
+        if ([RYCDataManager ShareInsurance].dataContainer.count == 0) {
+            self.title = @"添加配单";
+        }
+        else{
+            self.title = [NSString stringWithFormat:@"已添加%ld单",[RYCDataManager ShareInsurance].dataContainer.count];
+        }
+        
+    }
 }
 -(RYCTransitoinOrderModel *)dataModel
 {
@@ -52,24 +62,22 @@
     }
     return _dataModel;
 }
-- (IBAction)respondsToCityChange:(UIBarButtonItem *)sender {
-    
-}
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    if (self.currentModel == OperationModel_Edit) {
-        self.title = @"编辑配单";
-    }else{
-        self.title = @"添加配单";
-    }
+    
     
     [self setUI];
     [self createSearchHintTable];
     // Do any additional setup after loading the view, typically from a nib.
 }
 
-
+-(void)viewDidDisappear:(BOOL)animated
+{
+    [super viewDidDisappear:animated];
+    self.title = @"添加配单";
+}
 - (IBAction)retrieveKeyboard:(UIButton *)sender {
     [[UIApplication sharedApplication] sendAction:@selector(resignFirstResponder) to:nil from:nil forEvent:nil];
 }
@@ -77,7 +85,7 @@
 
 -(void)viewDidLayoutSubviews
 {
-    self.tableView.frame = CGRectMake(75,155,285, self.view.frame.size.height - 155 - 30);
+    self.tableView.frame = CGRectMake(75,115,285, self.view.frame.size.height - 115 - 30);
     
 }
 
@@ -142,9 +150,11 @@
     
     self.navigationItem.leftBarButtonItem = [[UIBarButtonItem alloc] initWithCustomView:[UIButton buttonWithType:UIButtonTypeCustom]];
     
-    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"完成输入" style:UIBarButtonItemStylePlain target:self action:@selector(respondsToComplete:)];
+    UIBarButtonItem *rightButton = [[UIBarButtonItem alloc] initWithTitle:@"去查看" style:UIBarButtonItemStylePlain target:self action:@selector(respondsToComplete:)];
     [rightButton setTintColor:[UIColor redColor]];
     self.navigationItem.rightBarButtonItem = rightButton;
+    
+    [self.completeButton addTarget:self action:@selector(respondsToComplete:) forControlEvents:UIControlEventTouchUpInside];
     
     if (self.currentModel == OperationModel_Edit) {
         UIBarButtonItem *button = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemDone target:self action:@selector(doneEdit:)];
@@ -160,6 +170,7 @@
     NSArray *imageList = @[ [UIImage imageNamed:@"menuUsers.png"], [UIImage imageNamed:@"menuMap.png"],[UIImage imageNamed:@"menuClose.png"]];
     self.slideBar = [[CDSideBarController alloc] initWithImages:imageList];
     self.slideBar.delegate = self;
+    
     
 }
 
@@ -252,7 +263,7 @@
     dataModel.location = self.selectedAddressModel.location;
     
     [[RYCDataManager ShareInsurance].dataContainer addObject:dataModel];
-    self.insertedNumLabel.text = [NSString stringWithFormat:@"%d",[RYCDataManager ShareInsurance].dataContainer.count];
+    self.title = [NSString stringWithFormat:@"已添加%ld单",[RYCDataManager ShareInsurance].dataContainer.count];
     [self clearTFs];
 }
 
